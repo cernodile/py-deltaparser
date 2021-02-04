@@ -11,6 +11,7 @@ import json
 import item_parser
 from world_planner_gen import write_world_planner_data
 from iamim_gt_planner import write_iamim_gt_planner
+from item_json_generator import write_json_data_file
 
 items = item_parser.parse("items.dat")
 name_file_json = {}
@@ -23,3 +24,4 @@ name_file.close()
 
 write_world_planner_data(items)
 write_iamim_gt_planner(items)
+write_json_data_file(items)
