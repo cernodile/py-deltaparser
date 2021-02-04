@@ -8,7 +8,7 @@ Purpose: To generate world data file for Cernodile's World Planner (updated by h
 License: See LICENSE.txt in project root directory.
 """
 import json
-import parser
+import item_parser
 from datatables import PlannerTypes
 
 def filter_web_planner(item):
@@ -116,5 +116,5 @@ def write_world_planner_data(items):
 	web_planner_data.close()
 
 if __name__ == '__main__':
-	items = parser.parse("items.dat")
+	items = item_parser.parse("items.dat")
 	write_world_planner_data(items)

@@ -8,11 +8,11 @@ Purpose: This file is the typical "create it all" file.
 License: See LICENSE.txt in project root directory.
 """
 import json
-import parser
+import item_parser
 from world_planner_gen import write_world_planner_data
 from iamim_gt_planner import write_iamim_gt_planner
 
-items = parser.parse("items.dat")
+items = item_parser.parse("items.dat")
 name_file_json = {}
 for item in items:
 	name_file_json[item] = items[item].Name
@@ -22,4 +22,4 @@ name_file.write(json.JSONEncoder(indent=4).encode(name_file_json))
 name_file.close()
 
 write_world_planner_data(items)
-write_iamim_gt_planner
+write_iamim_gt_planner(items)

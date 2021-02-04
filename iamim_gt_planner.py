@@ -8,7 +8,7 @@ Purpose: To generate data file for Iamim's GT Planner
 License: See LICENSE.txt in project root directory.
 """
 import csv
-import parser
+import item_parser
 def filter(item):
 	"""Filters out items that you should not be able to use in a world planner."""
 	if item.ID % 2 == 1:
@@ -159,5 +159,5 @@ def write_iamim_gt_planner(items):
 					writer.writerow([9203, "Ice Sculptures (Star)", "Foreground", 1, "Foreground", "tiles_page14", 11, 12, 0])
 
 if __name__ == "__main__":
-	items = parser.parse("items.dat")
+	items = item_parser.parse("items.dat")
 	write_iamim_gt_planner(items)

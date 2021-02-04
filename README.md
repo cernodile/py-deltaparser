@@ -9,7 +9,7 @@ python main.py
 
 **YOU MUST HAVE items.dat FILE IN THE SAME DIRECTORY AS SCRIPT!**
 
-The "main.py" file will use any supported data parser present in the codebase (such as world planner json or csv format or ID->name resolver) - you can easily extend this to your needs, read into parser.py to see how much data you can play around with and make it useful for yourself.
+The "main.py" file will use any supported data parser present in the codebase (such as world planner json or csv format or ID->name resolver) - you can easily extend this to your needs, read into item_parser.py to see how much data you can play around with and make it useful for yourself.
 
 ## Permissions
 Do whatever you please with it. If you use code from this repository, credit would be appreciated.
