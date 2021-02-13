@@ -87,7 +87,7 @@ def get_special_data(item):
 			x = 16
 		if item.ID == 3264 or item.ID == 3282 or item.ID == 3752:
 			x = 24
-		if item.ID >= 3268 and item.ID <= 3282:
+		if item.ID >= 3266 and item.ID <= 3282:
 			y = 6
 		if item.ID == 3412 or item.ID == 3414 or item.ID == 3752 or item.ID == 3766:
 			y = 12
@@ -124,9 +124,16 @@ def get_special_data(item):
 		elif item.ID == 4398:
 			x = 2
 			y = 3
-	if item.ID == 9516:
+	if item.ID == 10254:
+		x = y = 0
 		name = "Dining"
 	return (name, x, y)
+
+def get_storage_type(item):
+	if (item.ID >= 3258 and item.ID <= 3268) or item.ID == 3280 or item.ID == 3282 or item.ID == 3412 or item.ID == 3414 \
+		or (item.ID >= 3752 and item.ID <= 3756) or item.ID == 3766 or item.ID == 3768:
+		return 2
+	return item.StorageType
 
 
 def write_iamim_gt_planner(items):
@@ -137,12 +144,12 @@ def write_iamim_gt_planner(items):
 			item = items[item]
 			if filter(item):
 				data = get_special_data(item)
-				writer.writerow([item.ID, item.Name, get_item_type(item.Type), item.StorageType, get_informational_type(item), data[0], data[1], data[2], 1 if item.Properties & 0x01 else 0])
+				writer.writerow([item.ID, item.Name, get_item_type(item.Type), get_storage_type(item), get_informational_type(item), data[0], data[1], data[2], 1 if item.Properties & 0x01 or item.ID == 4700 else 0])
 				# actual 4660 is a confetti cannon, 5604 a goldfish bowler hat.
 				if item.ID == 4658:
 					writer.writerow([4660, "Detonated Uranium Block", "Foreground", 1, "Foreground", "tiles_page10", 3, 1, 0])
 				elif item.ID == 5602:
-					writer.writerow([5604, "Drilled Ice Crust Block", "Foreground", 1, "Foreground", "tiles_page9", 7, 0, 0])
+					writer.writerow([5604, "Drilled Ice Crust Block", "Foreground", 1, "Foreground", "tiles_page10", 1, 1, 0])
 				elif item.ID == 7866:
 					writer.writerow([7865, "Topiary Hedge (Swirly)", "Foreground", 1, "Foreground", "tiles_page13", 28, 11, 1])
 					writer.writerow([7866, "Topiary Hedge (Bird)", "Foreground", 1, "Foreground", "tiles_page13", 26, 11, 1])
