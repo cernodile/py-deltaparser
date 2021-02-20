@@ -13,3 +13,8 @@ The "main.py" file will use any supported data parser present in the codebase (s
 
 ## Permissions
 Do whatever you please with it. If you use code from this repository, credit would be appreciated.
+
+## Ports/Cool Stuff
+Did you make anything cool with this project? Perhaps ported it to your preferred language? Let me know and I may feature it here.
+
+[houzeyhoo's c-deltaparser](https://github.com/houzeyhoo/c-deltaparser)

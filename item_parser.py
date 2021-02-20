@@ -17,7 +17,7 @@ class Item:
 		self.FileName = ""
 		self.FileHash = -1
 		self.VisualType = 0
-		self.Unk = 0
+		self.CookTime = 0
 		self.TexX = 0
 		self.TexY = 0
 		self.StorageType = 0
@@ -41,7 +41,7 @@ class Item:
 		self.TreeOver = 0
 		self.BgCol = 0
 		self.FgCol = 0
-		self.Unk2 = 0
+		self.Unk = 0
 		self.BloomTime = 31
 		self.AnimType = 0
 		self.AnimString = ""
@@ -92,7 +92,7 @@ def parse(file_name: str):
 			item.FileName = parse_string(file)
 			item.FileHash = int.from_bytes(file.read(4), 'little')
 			item.VisualType = int.from_bytes(file.read(1), 'little')
-			item.Unk = int.from_bytes(file.read(4), 'little')
+			item.CookTime = int.from_bytes(file.read(4), 'little')
 			item.TexX = int.from_bytes(file.read(1), 'little')
 			item.TexY = int.from_bytes(file.read(1), 'little')
 			item.StorageType = int.from_bytes(file.read(1), 'little')
@@ -118,7 +118,7 @@ def parse(file_name: str):
 			item.TreeOver = int.from_bytes(file.read(1), 'little')
 			item.BgCol = int.from_bytes(file.read(4), 'little')
 			item.FgCol = int.from_bytes(file.read(4), 'little')
-			item.Unk2 = int.from_bytes(file.read(4), 'little')
+			item.Unk = int.from_bytes(file.read(4), 'little')
 			item.BloomTime = int.from_bytes(file.read(4), 'little')
 			if version >= 7:
 				item.AnimType = int.from_bytes(file.read(4), 'little')
@@ -129,9 +129,9 @@ def parse(file_name: str):
 				item.DLayer1 = int.from_bytes(file.read(4), 'little')
 				item.DLayer2 = int.from_bytes(file.read(4), 'little')
 			if version >= 9:
-				item.Properties2 = int.from_bytes(file.read(4), 'little')
+				item.Properties2 = int.from_bytes(file.read(2), 'little')
 				# clientdata, never really relevant, skip over.
-				file.read(4 * 15)
+				file.read(4 * 15 + 2)
 			if version >= 10:
 				item.TileRange = int.from_bytes(file.read(4), 'little')
 				item.PileRange = int.from_bytes(file.read(4), 'little')
