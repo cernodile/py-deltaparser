@@ -41,7 +41,8 @@ class Item:
 		self.TreeOver = 0
 		self.BgCol = 0
 		self.FgCol = 0
-		self.Unk = 0
+		self.Seed1 = 0
+		self.Seed2 = 0
 		self.BloomTime = 31
 		self.AnimType = 0
 		self.AnimString = ""
@@ -118,7 +119,9 @@ def parse(file_name: str):
 			item.TreeOver = int.from_bytes(file.read(1), 'little')
 			item.BgCol = int.from_bytes(file.read(4), 'little')
 			item.FgCol = int.from_bytes(file.read(4), 'little')
-			item.Unk = int.from_bytes(file.read(4), 'little')
+			# Note! Seed values are never assigned normally server-side, but they are reserved for such purpose.
+			item.Seed1 = int.from_bytes(file.read(2), 'little')
+			item.Seed2 = int.from_bytes(file.read(2), 'little')
 			item.BloomTime = int.from_bytes(file.read(4), 'little')
 			if version >= 7:
 				item.AnimType = int.from_bytes(file.read(4), 'little')
