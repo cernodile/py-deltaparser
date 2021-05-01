@@ -54,6 +54,7 @@ class Item:
 		self.TileRange = 0
 		self.PileRange = 0
 		self.CustomPunch = ""
+		self.ClockDivider = 0
 
 def decrypt_name(Name, cryptID):
 	"""Ported from Proton SDK @ ResourceUtils.cpp."""
@@ -144,7 +145,12 @@ def parse(file_name: str):
 				# not really useful data, fixed size, can skip.
 				file.read(13)
 			if version >= 13:
-				file.read(4) # Related to May 2021 IOTM - has value of 5.
+				# Clock Divider - floor(24 / x), client-selfreport to server with local time
+				# This info shouldn't be in items.dat, but it's used to build indexes for
+				# item states when querying server. e.g. Plasma Heart has value of 5
+				# So an item state changes every 4 hours for it. Due to it having 3 states
+				# it will loop on hours 0-3 and 20-23, making "Blue" the most common state.
+				item.ClockDivider = int.from_bytes(file.read(4), 'little')
 			items[item.ID] = item
 		return items
 	except FileNotFoundError:
