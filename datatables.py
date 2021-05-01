@@ -143,5 +143,7 @@ PlannerTypes = [
 "",
 "Weather Machine - Infinity",
 "Slime",
-"Acid"
+"Acid",
+"",
+"Waving Arm Guy"
 ]

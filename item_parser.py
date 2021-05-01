@@ -6,7 +6,7 @@ File: parser.py
 Purpose: The actual parser for items.
 License: See LICENSE.txt in project root directory.
 """
-max_version = 12
+max_version = 13
 class Item:
 	def __init__(self):
 		self.ID = 0
@@ -143,6 +143,8 @@ def parse(file_name: str):
 			if version >= 12:
 				# not really useful data, fixed size, can skip.
 				file.read(13)
+			if version >= 13:
+				file.read(4) # Related to May 2021 IOTM - has value of 5.
 			items[item.ID] = item
 		return items
 	except FileNotFoundError:
